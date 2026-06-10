@@ -106,9 +106,9 @@ function Blog({ setShowLogin }) {
 
       {totalPages > 1 && (
         <div className="pagination">
-          <button disabled={page === 1} onClick={() => setPage(p => p - 1)}>← Prev</button>
+          <button disabled={page === 1} onClick={() => setPage(p => p - 1)}>Prev</button>
           <span>{page} / {totalPages}</span>
-          <button disabled={page === totalPages} onClick={() => setPage(p => p + 1)}>Next →</button>
+          <button disabled={page === totalPages} onClick={() => setPage(p => p + 1)}>Next</button>
         </div>
       )}
     </div>

@@ -35,7 +35,7 @@ function FeaturedPosts() {
             {post.coverImage ? (
               <img src={post.coverImage} alt={post.title} />
             ) : (
-              <div className="card-img-placeholder">✿</div>
+              <div className="card-img-placeholder">No Image</div>
             )}
             <div className="card-tags">
               {post.tags.slice(0, 2).map(tag => (
@@ -45,7 +45,7 @@ function FeaturedPosts() {
             <h3>{post.title}</h3>
             <p>{post.excerpt}</p>
             <div className="card-meta">
-              <span>♡ {post.likeCount}</span>
+              <span>Likes: {post.likeCount}</span>
               <span>by {post.author?.name}</span>
             </div>
           </div>

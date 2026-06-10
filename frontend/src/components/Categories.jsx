@@ -37,7 +37,7 @@ function Categories({ onSelectTag }) {
                 onClick={(e) => handleFollow(e, topic)}
                 title={isFollowing(topic) ? 'Unfollow' : 'Follow'}
               >
-                {isFollowing(topic) ? '✓' : '+'}
+                {isFollowing(topic) ? 'Following' : 'Follow'}
               </button>
             )}
           </div>
