@@ -1,0 +1,38 @@
+@import './variables.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+/* Shared blog tag pill */
+.blog-tag {
+  display: inline-block;
+  background: var(--bg-section);
+  color: var(--secondary);
+  font-size: 12px;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* Skeleton loader */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-section) 25%, var(--border) 50%, var(--bg-section) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius);
+  min-height: 120px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

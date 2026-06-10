@@ -1,0 +1,14 @@
+:root {
+  --bg-main: #FFF8F3;
+  --bg-section: #F5E6DA;
+  --primary: #F8C8DC;
+  --secondary: #D88C9A;
+  --secondary-dark: #b8607a;
+  --text-main: #5E4B45;
+  --text-light: #8a7070;
+  --white: #FFFFFF;
+  --border: #e8d5cc;
+  --shadow: 0 4px 16px rgba(94, 75, 69, 0.1);
+  --radius: 16px;
+  --radius-sm: 8px;
+}

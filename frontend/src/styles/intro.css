@@ -1,0 +1,42 @@
+.intro {
+  text-align: center;
+  padding: 100px 20px 60px;
+  background: linear-gradient(180deg, var(--bg-main) 0%, var(--bg-section) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.intro::before {
+  content: '✿';
+  position: absolute;
+  top: 30px;
+  left: 8%;
+  font-size: 60px;
+  opacity: 0.12;
+  transform: rotate(-20deg);
+}
+
+.intro::after {
+  content: '✿';
+  position: absolute;
+  bottom: 20px;
+  right: 8%;
+  font-size: 80px;
+  opacity: 0.1;
+  transform: rotate(15deg);
+}
+
+.intro h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 54px;
+  color: var(--secondary);
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.intro p {
+  font-size: 18px;
+  color: var(--text-light);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}

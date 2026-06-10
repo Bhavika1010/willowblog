@@ -1,0 +1,37 @@
+.footer {
+  background: var(--bg-section);
+  text-align: center;
+  padding: 50px 40px;
+  border-top: 1px solid var(--border);
+}
+
+.footer h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: var(--secondary);
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.footer p {
+  font-size: 13px;
+  color: var(--text-light);
+  margin: 6px 0 20px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.footer-links span {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.footer-links span:hover {
+  color: var(--secondary);
+}

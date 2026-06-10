@@ -1,0 +1,50 @@
+.contact-page {
+  padding: 60px 20px;
+}
+
+.contact-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-container h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  color: var(--secondary);
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.contact-container > p {
+  color: var(--text-light);
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--white);
+  padding: 22px 26px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.contact-item span {
+  font-size: 28px;
+}
+
+.contact-item p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--text-main);
+  font-weight: 500;
+}

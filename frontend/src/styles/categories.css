@@ -1,0 +1,67 @@
+.categories {
+  padding: 60px;
+  text-align: center;
+}
+
+.categories h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  color: var(--secondary);
+  margin-bottom: 40px;
+  font-style: italic;
+}
+
+.category-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.category {
+  background: var(--bg-section);
+  padding: 12px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  border: 2px solid transparent;
+}
+
+.category:hover {
+  background: var(--primary);
+  border-color: var(--secondary);
+}
+
+.category.followed {
+  background: var(--primary);
+  border-color: var(--secondary);
+  color: var(--secondary-dark);
+}
+
+.follow-btn {
+  background: var(--white);
+  border: 1.5px solid var(--secondary);
+  color: var(--secondary);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: 0.2s;
+  padding: 0;
+  font-weight: 700;
+}
+
+.follow-btn:hover {
+  background: var(--secondary);
+  color: var(--white);
+}
