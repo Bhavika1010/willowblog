@@ -7,7 +7,6 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // On mount, check if token exists and load user
   useEffect(() => {
     const token = localStorage.getItem('willowToken');
     if (token) {

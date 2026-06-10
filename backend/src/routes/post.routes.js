@@ -10,6 +10,8 @@ import {
   getFeaturedPosts
 } from '../controllers/post.controller.js';
 import { protect, adminOnly } from '../middleware/auth.middleware.js';
+import { validate } from '../middleware/validate.middleware.js';
+import { createPostSchema, updatePostSchema } from '../validators/post.validator.js';
 
 const router = express.Router();
 
@@ -17,8 +19,8 @@ router.get('/', getPosts);
 router.get('/featured', getFeaturedPosts);
 router.get('/:id', getPost);
 
-router.post('/', protect, adminOnly, createPost);
-router.put('/:id', protect, adminOnly, updatePost);
+router.post('/', protect, adminOnly, validate(createPostSchema), createPost);
+router.put('/:id', protect, adminOnly, validate(updatePostSchema), updatePost);
 router.delete('/:id', protect, adminOnly, deletePost);
 
 router.post('/:id/like', protect, toggleLike);

@@ -32,7 +32,6 @@ export const updateProfile = async (req, res, next) => {
 export const toggleFollowTopic = async (req, res, next) => {
   try {
     const { topic } = req.body;
-    if (!topic) return res.status(400).json({ message: 'Topic required' });
 
     const user = await User.findById(req.user._id);
     const normalizedTopic = topic.toLowerCase();

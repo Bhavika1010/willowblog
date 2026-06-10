@@ -13,9 +13,7 @@ function NotificationBell() {
       const res = await API.get('/notifications');
       setNotifications(res.data.notifications);
       setUnreadCount(res.data.unreadCount);
-    } catch (err) {
-      // silently fail
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {

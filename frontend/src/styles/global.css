@@ -12,7 +12,6 @@ body {
   line-height: 1.6;
 }
 
-/* Shared blog tag pill */
 .blog-tag {
   display: inline-block;
   background: var(--bg-section);
@@ -23,7 +22,6 @@ body {
   font-weight: 500;
 }
 
-/* Skeleton loader */
 .skeleton {
   background: linear-gradient(90deg, var(--bg-section) 25%, var(--border) 50%, var(--bg-section) 75%);
   background-size: 200% 100%;

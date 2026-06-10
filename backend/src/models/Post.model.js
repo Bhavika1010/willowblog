@@ -45,7 +45,6 @@ const postSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-// Auto-generate excerpt from content if not provided
 postSchema.pre('save', function (next) {
   if (!this.excerpt && this.content) {
     this.excerpt = this.content.substring(0, 150) + '...';

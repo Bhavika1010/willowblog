@@ -51,10 +51,6 @@ export const createPost = async (req, res, next) => {
   try {
     const { title, content, excerpt, coverImage, tags } = req.body;
 
-    if (!title || !content) {
-      return res.status(400).json({ message: 'Title and content are required' });
-    }
-
     const post = await Post.create({
       title,
       content,
