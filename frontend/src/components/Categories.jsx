@@ -2,7 +2,7 @@ import '../styles/categories.css';
 import { useAuth } from '../context/AuthContext';
 import API from '../api/axios';
 
-const TOPICS = ['Lifestyle', 'Self Growth', 'Fashion', 'Tech', 'Health', 'Journaling'];
+const TOPICS = ['Lifestyle', 'Self Growth', 'Fashion', 'Tech', 'Health', 'Journaling', 'Skincare'];
 
 function Categories({ onSelectTag }) {
   const { user, updateUser } = useAuth();
