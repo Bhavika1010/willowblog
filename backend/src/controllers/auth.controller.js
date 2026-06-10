@@ -6,7 +6,7 @@ const generateToken = (id) => {
 };
 
 
-export const register = async (req, res) => {
+export const register = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
 
@@ -31,12 +31,12 @@ export const register = async (req, res) => {
       token: generateToken(user._id)
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
 
-export const login = async (req, res) => {
+export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
@@ -55,16 +55,16 @@ export const login = async (req, res) => {
       token: generateToken(user._id)
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
 
-export const getMe = async (req, res) => {
+export const getMe = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id).populate('savedPosts', 'title excerpt tags createdAt');
     res.json(user);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };

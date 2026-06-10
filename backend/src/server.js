@@ -8,6 +8,7 @@ import postRoutes from './routes/post.routes.js';
 import userRoutes from './routes/user.routes.js';
 import commentRoutes from './routes/comment.routes.js';
 import notificationRoutes from './routes/notification.routes.js';
+import { errorHandler } from './middleware/error.middleware.js';
 
 dotenv.config();
 
@@ -34,6 +35,8 @@ app.use('/api/notifications', notificationRoutes);
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Willow Blog API is running' });
 });
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

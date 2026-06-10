@@ -1,8 +1,7 @@
 import Notification from '../models/Notification.model.js';
 
-// @desc    Get user notifications
-// @route   GET /api/notifications
-export const getNotifications = async (req, res) => {
+
+export const getNotifications = async (req, res, next) => {
   try {
     const notifications = await Notification.find({ recipient: req.user._id })
       .populate('post', 'title')
@@ -16,13 +15,12 @@ export const getNotifications = async (req, res) => {
 
     res.json({ notifications, unreadCount });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
-// @desc    Mark all notifications as read
-// @route   PUT /api/notifications/read-all
-export const markAllRead = async (req, res) => {
+
+export const markAllRead = async (req, res, next) => {
   try {
     await Notification.updateMany(
       { recipient: req.user._id, isRead: false },
@@ -30,6 +28,6 @@ export const markAllRead = async (req, res) => {
     );
     res.json({ message: 'All notifications marked as read' });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };

@@ -2,9 +2,8 @@ import Post from '../models/Post.model.js';
 import User from '../models/User.model.js';
 import Notification from '../models/Notification.model.js';
 
-// @desc    Get all posts (with optional tag filter & search)
-// @route   GET /api/posts
-export const getPosts = async (req, res) => {
+
+export const getPosts = async (req, res, next) => {
   try {
     const { tag, search, page = 1, limit = 10 } = req.query;
     const query = { isPublished: true };
@@ -32,25 +31,23 @@ export const getPosts = async (req, res) => {
       pages: Math.ceil(total / limit)
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
-// @desc    Get single post
-// @route   GET /api/posts/:id
-export const getPost = async (req, res) => {
+
+export const getPost = async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.id).populate('author', 'name avatar bio');
     if (!post) return res.status(404).json({ message: 'Post not found' });
     res.json(post);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
-// @desc    Create post (admin only)
-// @route   POST /api/posts
-export const createPost = async (req, res) => {
+
+export const createPost = async (req, res, next) => {
   try {
     const { title, content, excerpt, coverImage, tags } = req.body;
 
@@ -67,7 +64,7 @@ export const createPost = async (req, res) => {
       author: req.user._id
     });
 
-    // Notify users following any of the post's tags
+    
     if (tags && tags.length > 0) {
       const followers = await User.find({ followedTopics: { $in: tags } });
       const notifications = followers.map(user => ({
@@ -84,13 +81,12 @@ export const createPost = async (req, res) => {
     const populated = await post.populate('author', 'name avatar');
     res.status(201).json(populated);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
-// @desc    Update post (admin only)
-// @route   PUT /api/posts/:id
-export const updatePost = async (req, res) => {
+
+export const updatePost = async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post) return res.status(404).json({ message: 'Post not found' });
@@ -107,26 +103,24 @@ export const updatePost = async (req, res) => {
     await updated.populate('author', 'name avatar');
     res.json(updated);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
-// @desc    Delete post (admin only)
-// @route   DELETE /api/posts/:id
-export const deletePost = async (req, res) => {
+
+export const deletePost = async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post) return res.status(404).json({ message: 'Post not found' });
     await post.deleteOne();
     res.json({ message: 'Post deleted' });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
-// @desc    Like / Unlike post
-// @route   POST /api/posts/:id/like
-export const toggleLike = async (req, res) => {
+
+export const toggleLike = async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post) return res.status(404).json({ message: 'Post not found' });
@@ -144,13 +138,12 @@ export const toggleLike = async (req, res) => {
 
     res.json({ liked: !alreadyLiked, likeCount: post.likeCount });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
-// @desc    Save / Unsave post
-// @route   POST /api/posts/:id/save
-export const toggleSave = async (req, res) => {
+
+export const toggleSave = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id);
     const postId = req.params.id;
@@ -165,13 +158,12 @@ export const toggleSave = async (req, res) => {
 
     res.json({ saved: !alreadySaved, savedPosts: user.savedPosts });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
-// @desc    Get featured posts (most liked)
-// @route   GET /api/posts/featured
-export const getFeaturedPosts = async (req, res) => {
+
+export const getFeaturedPosts = async (req, res, next) => {
   try {
     const posts = await Post.find({ isPublished: true })
       .populate('author', 'name avatar')
@@ -179,6 +171,6 @@ export const getFeaturedPosts = async (req, res) => {
       .limit(3);
     res.json(posts);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
