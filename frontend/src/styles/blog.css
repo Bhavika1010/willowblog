@@ -205,3 +205,13 @@
   color: var(--text-light);
   font-size: 14px;
 }
+
+@media (max-width: 768px) {
+  .blog-page {
+    padding: 32px 20px;
+  }
+
+  .blog-list {
+    grid-template-columns: 1fr;
+  }
+}

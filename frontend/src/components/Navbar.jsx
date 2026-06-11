@@ -3,9 +3,11 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import NotificationBell from './NotificationBell';
+import { Menu, X } from 'lucide-react';
 
 function Navbar({ setShowLogin }) {
   const [activeSection, setActiveSection] = useState('home');
+  const [menuOpen, setMenuOpen] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -23,8 +25,11 @@ function Navbar({ setShowLogin }) {
 
   const handleLogout = () => {
     logout();
+    setMenuOpen(false);
     navigate('/');
   };
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <nav className="navbar">
@@ -34,10 +39,15 @@ function Navbar({ setShowLogin }) {
         </NavLink>
       </div>
 
-      <ul className="nav-links">
+      <button className="nav-toggle" onClick={() => setMenuOpen(o => !o)} aria-label="Toggle menu">
+        {menuOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+
+      <ul className={menuOpen ? 'nav-links open' : 'nav-links'}>
         <li>
           <NavLink
             to="/"
+            onClick={closeMenu}
             className={({ isActive }) =>
               isActive && activeSection === 'home' ? 'nav-item active' : 'nav-item'
             }
@@ -46,12 +56,12 @@ function Navbar({ setShowLogin }) {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/about" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+          <NavLink to="/about" onClick={closeMenu} className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
             About
           </NavLink>
         </li>
         <li>
-          <NavLink to="/blog" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+          <NavLink to="/blog" onClick={closeMenu} className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
             Blog
           </NavLink>
         </li>
@@ -59,6 +69,7 @@ function Navbar({ setShowLogin }) {
           <span
             className={activeSection === 'categories' ? 'nav-item active' : 'nav-item'}
             onClick={() => {
+              closeMenu();
               if (window.location.pathname !== '/') {
                 window.location.href = '/#categories';
               } else {
@@ -70,7 +81,7 @@ function Navbar({ setShowLogin }) {
           </span>
         </li>
         <li>
-          <NavLink to="/contact" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+          <NavLink to="/contact" onClick={closeMenu} className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
             Contact
           </NavLink>
         </li>
@@ -79,13 +90,13 @@ function Navbar({ setShowLogin }) {
           <>
             {user.role === 'admin' && (
               <li>
-                <NavLink to="/create" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+                <NavLink to="/create" onClick={closeMenu} className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
                   + Write
                 </NavLink>
               </li>
             )}
             <li>
-              <NavLink to="/saved" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+              <NavLink to="/saved" onClick={closeMenu} className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
                 Saved
               </NavLink>
             </li>
@@ -103,7 +114,7 @@ function Navbar({ setShowLogin }) {
           </>
         ) : (
           <li>
-            <button className="nav-signin-btn" onClick={() => setShowLogin(true)}>
+            <button className="nav-signin-btn" onClick={() => { setShowLogin(true); closeMenu(); }}>
               Sign In
             </button>
           </li>

@@ -41,3 +41,14 @@
 .search button:hover {
   background: var(--secondary-dark);
 }
+
+@media (max-width: 600px) {
+  .search {
+    flex-wrap: wrap;
+  }
+
+  .search input {
+    width: 100%;
+    flex: 1 1 auto;
+  }
+}

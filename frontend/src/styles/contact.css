@@ -48,3 +48,17 @@
   color: var(--text-main);
   font-weight: 500;
 }
+
+@media (max-width: 600px) {
+  .contact-page {
+    padding: 40px 16px;
+  }
+
+  .contact-container h1 {
+    font-size: 30px;
+  }
+
+  .contact-item {
+    padding: 18px 16px;
+  }
+}
