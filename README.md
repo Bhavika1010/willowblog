@@ -18,4 +18,3 @@ npm install
 npm run dev
 ```
 
-Visit `http://localhost:5173`. Make sure `backend/.env` is set up with `MONGO_URI`, `JWT_SECRET`, and `CLIENT_URL`.
