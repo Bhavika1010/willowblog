@@ -94,6 +94,14 @@ function PostDetail({ setShowLogin }) {
     } catch (err) {}
   };
 
+  const handleDeletePost = async () => {
+    if (!window.confirm('Delete this post? This cannot be undone.')) return;
+    try {
+      await API.delete(`/posts/${id}`);
+      navigate('/blog');
+    } catch (err) {}
+  };
+
   const formatDate = (date) =>
     new Date(date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
 
@@ -117,6 +125,16 @@ function PostDetail({ setShowLogin }) {
         <div className="post-meta">
           <span>by <strong>{post.author?.name}</strong></span>
           <span>{formatDate(post.createdAt)}</span>
+          {user?.role === 'admin' && (
+            <div className="post-admin-actions">
+              <button className="post-edit-btn" onClick={() => navigate(`/blog/${id}/edit`)}>
+                Edit
+              </button>
+              <button className="post-delete-btn" onClick={handleDeletePost}>
+                Delete
+              </button>
+            </div>
+          )}
         </div>
 
         <div className="post-actions-bar">

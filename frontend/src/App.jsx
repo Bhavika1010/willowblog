@@ -7,6 +7,7 @@ import About from './pages/About';
 import Blog from './pages/Blog';
 import PostDetail from './pages/PostDetail';
 import CreatePost from './pages/CreatePost';
+import EditPost from './pages/EditPost';
 import Contact from './pages/Contact';
 import SavedPosts from './pages/SavedPosts';
 import Login from './components/Login';
@@ -28,6 +29,10 @@ function App() {
         <Route
           path="/create"
           element={user && user.role === 'admin' ? <CreatePost /> : <Home />}
+        />
+        <Route
+          path="/blog/:id/edit"
+          element={user && user.role === 'admin' ? <EditPost /> : <Home />}
         />
         <Route
           path="/saved"

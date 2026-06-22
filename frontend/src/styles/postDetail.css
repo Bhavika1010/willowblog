@@ -40,12 +40,43 @@
 
 .post-meta {
   display: flex;
+  align-items: center;
   gap: 20px;
   color: var(--text-light);
   font-size: 13px;
   margin-bottom: 24px;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--border);
+}
+
+.post-admin-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.post-edit-btn,
+.post-delete-btn {
+  border: 1px solid var(--border);
+  background: transparent;
+  border-radius: var(--radius);
+  padding: 6px 14px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.post-edit-btn:hover {
+  background: var(--border);
+}
+
+.post-delete-btn {
+  color: #c0392b;
+  border-color: #c0392b;
+}
+
+.post-delete-btn:hover {
+  background: #c0392b;
+  color: #fff;
 }
 
 .post-actions-bar {
