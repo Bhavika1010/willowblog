@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import API from '../api/axios';
 import { useAuth } from '../context/AuthContext';
-import { Heart, Bookmark, BookmarkCheck } from 'lucide-react';
+import { Heart, Bookmark, BookmarkCheck, Link2, Check } from 'lucide-react';
 
 function PostDetail({ setShowLogin }) {
   const { id } = useParams();
@@ -19,6 +19,7 @@ function PostDetail({ setShowLogin }) {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [saved, setSaved] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const fetch = async () => {
@@ -94,6 +95,24 @@ function PostDetail({ setShowLogin }) {
     } catch (err) {}
   };
 
+  const handleShare = async () => {
+    const url = `${window.location.origin}/blog/${id}`;
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch (err) {
+      const textarea = document.createElement('textarea');
+      textarea.value = url;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   const handleDeletePost = async () => {
     if (!window.confirm('Delete this post? This cannot be undone.')) return;
     try {
@@ -150,6 +169,12 @@ function PostDetail({ setShowLogin }) {
             onClick={handleSave}
           >
             {saved ? <><BookmarkCheck size={16} /> Saved</> : <><Bookmark size={16} /> Save</>}
+          </button>
+          <button
+            className={`action-btn-lg ${copied ? 'saved' : ''}`}
+            onClick={handleShare}
+          >
+            {copied ? <><Check size={16} /> Link Copied</> : <><Link2 size={16} /> Share</>}
           </button>
         </div>
 
