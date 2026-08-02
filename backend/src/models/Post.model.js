@@ -42,6 +42,10 @@ const postSchema = new mongoose.Schema({
   isPublished: {
     type: Boolean,
     default: true
+  },
+  isFeatured: {
+    type: Boolean,
+    default: false
   }
 }, { timestamps: true });
 

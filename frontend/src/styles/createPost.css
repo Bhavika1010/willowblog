@@ -98,6 +98,23 @@
   font-weight: 500;
 }
 
+.create-featured-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-main);
+  margin-bottom: 24px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.create-featured-toggle input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
 .create-actions {
   display: flex;
   gap: 14px;

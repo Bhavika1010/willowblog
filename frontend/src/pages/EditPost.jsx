@@ -13,7 +13,8 @@ function EditPost() {
     content: '',
     excerpt: '',
     coverImage: '',
-    tags: []
+    tags: [],
+    isFeatured: false
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -23,8 +24,8 @@ function EditPost() {
     const fetch = async () => {
       try {
         const res = await API.get(`/posts/${id}`);
-        const { title, content, excerpt, coverImage, tags } = res.data;
-        setForm({ title, content, excerpt: excerpt || '', coverImage: coverImage || '', tags: tags || [] });
+        const { title, content, excerpt, coverImage, tags, isFeatured } = res.data;
+        setForm({ title, content, excerpt: excerpt || '', coverImage: coverImage || '', tags: tags || [], isFeatured: isFeatured || false });
       } catch (err) {
         navigate('/blog');
       } finally {
@@ -124,6 +125,15 @@ function EditPost() {
             ))}
           </div>
         </div>
+
+        <label className="create-featured-toggle">
+          <input
+            type="checkbox"
+            checked={form.isFeatured}
+            onChange={(e) => setForm(prev => ({ ...prev, isFeatured: e.target.checked }))}
+          />
+          Show in Featured Posts
+        </label>
 
         <div className="create-actions">
           <button className="create-cancel-btn" onClick={() => navigate(`/blog/${id}`)}>

@@ -5,7 +5,8 @@ export const createPostSchema = z.object({
   content: z.string().trim().min(1, 'Content is required'),
   excerpt: z.string().trim().optional(),
   coverImage: z.string().trim().optional(),
-  tags: z.array(z.string().trim()).optional()
+  tags: z.array(z.string().trim()).optional(),
+  isFeatured: z.boolean().optional()
 });
 
 export const updatePostSchema = z.object({
@@ -14,5 +15,6 @@ export const updatePostSchema = z.object({
   excerpt: z.string().trim().optional(),
   coverImage: z.string().trim().optional(),
   tags: z.array(z.string().trim()).optional(),
-  isPublished: z.boolean().optional()
+  isPublished: z.boolean().optional(),
+  isFeatured: z.boolean().optional()
 });

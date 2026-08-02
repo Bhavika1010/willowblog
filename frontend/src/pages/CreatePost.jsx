@@ -12,7 +12,8 @@ function CreatePost() {
     content: '',
     excerpt: '',
     coverImage: '',
-    tags: []
+    tags: [],
+    isFeatured: false
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -105,6 +106,15 @@ function CreatePost() {
             ))}
           </div>
         </div>
+
+        <label className="create-featured-toggle">
+          <input
+            type="checkbox"
+            checked={form.isFeatured}
+            onChange={(e) => setForm(prev => ({ ...prev, isFeatured: e.target.checked }))}
+          />
+          Show in Featured Posts
+        </label>
 
         <div className="create-actions">
           <button className="create-cancel-btn" onClick={() => navigate('/blog')}>

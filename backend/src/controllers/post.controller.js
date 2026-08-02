@@ -49,7 +49,7 @@ export const getPost = async (req, res, next) => {
 
 export const createPost = async (req, res, next) => {
   try {
-    const { title, content, excerpt, coverImage, tags } = req.body;
+    const { title, content, excerpt, coverImage, tags, isFeatured } = req.body;
 
     const post = await Post.create({
       title,
@@ -57,6 +57,7 @@ export const createPost = async (req, res, next) => {
       excerpt,
       coverImage,
       tags: tags || [],
+      isFeatured: isFeatured || false,
       author: req.user._id
     });
 
@@ -87,13 +88,14 @@ export const updatePost = async (req, res, next) => {
     const post = await Post.findById(req.params.id);
     if (!post) return res.status(404).json({ message: 'Post not found' });
 
-    const { title, content, excerpt, coverImage, tags, isPublished } = req.body;
+    const { title, content, excerpt, coverImage, tags, isPublished, isFeatured } = req.body;
     if (title) post.title = title;
     if (content) post.content = content;
     if (excerpt !== undefined) post.excerpt = excerpt;
     if (coverImage !== undefined) post.coverImage = coverImage;
     if (tags) post.tags = tags;
     if (isPublished !== undefined) post.isPublished = isPublished;
+    if (isFeatured !== undefined) post.isFeatured = isFeatured;
 
     const updated = await post.save();
     await updated.populate('author', 'name avatar');
@@ -161,9 +163,9 @@ export const toggleSave = async (req, res, next) => {
 
 export const getFeaturedPosts = async (req, res, next) => {
   try {
-    const posts = await Post.find({ isPublished: true })
+    const posts = await Post.find({ isPublished: true, isFeatured: true })
       .populate('author', 'name avatar')
-      .sort({ likeCount: -1 })
+      .sort({ createdAt: -1 })
       .limit(3);
     res.json(posts);
   } catch (error) {
