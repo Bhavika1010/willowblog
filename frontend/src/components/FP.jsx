@@ -33,7 +33,7 @@ function FeaturedPosts() {
         {posts.map(post => (
           <div key={post._id} className="card" onClick={() => navigate(`/blog/${post._id}`)}>
             {post.coverImage ? (
-              <img src={post.coverImage} alt={post.title} />
+              <img src={post.coverImage} alt={post.title} loading="lazy" />
             ) : (
               <div className="card-img-placeholder">No Image</div>
             )}

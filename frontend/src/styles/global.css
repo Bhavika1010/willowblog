@@ -22,6 +22,13 @@ body {
   font-weight: 500;
 }
 
+.page-loading {
+  text-align: center;
+  padding: 100px;
+  color: var(--text-light);
+  font-size: 16px;
+}
+
 .skeleton {
   background: linear-gradient(90deg, var(--bg-section) 25%, var(--border) 50%, var(--bg-section) 75%);
   background-size: 200% 100%;

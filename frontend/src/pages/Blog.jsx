@@ -145,7 +145,7 @@ function BlogCard({ post, setShowLogin, formatDate }) {
   return (
     <div className="blog-card" onClick={() => navigate(`/blog/${post._id}`)}>
       {post.coverImage && (
-        <img src={post.coverImage} alt={post.title} className="blog-card-img" />
+        <img src={post.coverImage} alt={post.title} className="blog-card-img" loading="lazy" />
       )}
       <div className="blog-card-body">
         <div className="blog-card-tags">
